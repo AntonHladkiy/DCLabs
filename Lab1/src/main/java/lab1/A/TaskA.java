@@ -29,6 +29,7 @@ public class TaskA {
         JSlider Thread10PrioritySlider = new JSlider();
         Thread10PrioritySlider.setBounds(10, 110, 150, 30);
         Thread10PrioritySlider.setMaximum( 10 );
+        Thread10PrioritySlider.setValue( 5 );
         Thread10PrioritySlider.setMinimum( 1 );
         Thread10PrioritySlider.addChangeListener(e -> {
             changeThreadPriority(Thread10PrioritySlider,thread10);
@@ -38,6 +39,7 @@ public class TaskA {
         JSlider Thread90PrioritySlider = new JSlider();
         Thread90PrioritySlider.setBounds(230, 110, 150, 30);
         Thread90PrioritySlider.setMaximum( 10 );
+        Thread90PrioritySlider.setValue( 5 );
         Thread90PrioritySlider.setMinimum( 1 );
         Thread90PrioritySlider.addChangeListener(e -> {
             changeThreadPriority(Thread90PrioritySlider,thread90);

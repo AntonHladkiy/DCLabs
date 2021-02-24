@@ -6,7 +6,7 @@ import javax.swing.*;
 import java.util.concurrent.atomic.AtomicInteger;
 
 public class TaskB {
-    private static final AtomicInteger semaphore = new AtomicInteger(0);
+    public static final AtomicInteger semaphore = new AtomicInteger(0);
 
     private static final JSlider slider = new JSlider();
 
@@ -20,7 +20,7 @@ public class TaskB {
         slider.setBounds(85, 150, 220, 20);
 
         JLabel label = new JLabel("");
-        label.setBounds(100, 70, 200, 30);
+        label.setBounds(100, 20, 200, 30);
 
         JButton startThread10Button = new JButton("Start 10");
         startThread10Button.setBounds(10, 50, 150, 30);
@@ -38,13 +38,14 @@ public class TaskB {
         startThread10Button.addActionListener(e -> {
             if (semaphore.compareAndSet(0,1)) {
                 label.setText("Slider is being used by a 10 thread");
+                thread10.setPriority( Thread.MIN_PRIORITY );
                 thread10.start();
                 stopThread90Button.setEnabled(false);
             }
         });
         stopThread10Button.addActionListener(e -> {
             if (semaphore.compareAndSet(1,0)) {
-                label.setText("10 thread destroyed");
+                label.setText("10 thread stopped");
                 thread10.interrupt();
                 stopThread90Button.setEnabled(true);
             }
@@ -52,13 +53,14 @@ public class TaskB {
         startThread90Button.addActionListener(e -> {
             if (semaphore.compareAndSet(0,1)) {
                 label.setText("Slider is being used by a 90 thread");
+                thread90.setPriority( Thread.MAX_PRIORITY);
                 thread90.start();
                 stopThread10Button.setEnabled(false);
             }
         });
         stopThread90Button.addActionListener(e -> {
             if (semaphore.compareAndSet(1,0)) {
-                label.setText("10 thread destroyed");
+                label.setText("10 thread stopped");
                 thread90.interrupt();
                 stopThread10Button.setEnabled(true);
             }

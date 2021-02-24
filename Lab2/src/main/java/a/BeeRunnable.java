@@ -1,0 +1,33 @@
+package a;
+
+import lombok.Getter;
+import lombok.Setter;
+
+public class BeeRunnable implements Runnable{
+    @Setter
+    private static ForestTasksManager forestTasksManager;
+    @Getter
+    private static int bearsX;
+    @Getter
+    private static int bearsY;
+
+    @Override
+    public void run() {
+        while (!forestTasksManager.isDone()) {
+            BeeTask currentTask = forestTasksManager.getTask();
+            System.out.println("Now searching in row number: " + currentTask.getY());
+            boolean[] field = currentTask.getField();
+            if (field == null)
+                return;
+
+            for (int i = 0; i < field.length; i++) {
+                if (field[i]) {
+                    bearsY = currentTask.getY();
+                    bearsX = i;
+                    forestTasksManager.setDone(true);
+                }
+            }
+
+        }
+    }
+}
