@@ -29,9 +29,9 @@ public class Main {
         }
 
         Duel.setMonksPower(monksPower);
-        Duel competition = new Duel(0, monksPower.length-1);
+        Duel duel = new Duel(0, monksPower.length-1);
 
-        int winnerIndex = competition.compute();
+        int winnerIndex = duel.compute();
         if (winnerIndex == expectedWinnerIndex)
             System.out.println("Success");
     }
