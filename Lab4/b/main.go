@@ -47,7 +47,7 @@ func nature(garden [][]int, rwMutex *sync.RWMutex, wg *sync.WaitGroup) {
 	defer wg.Done()
 }
 
-func monitor1(garden [][]int, rwMutex *sync.RWMutex, wg *sync.WaitGroup) {
+func fileWriter(garden [][]int, rwMutex *sync.RWMutex, wg *sync.WaitGroup) {
 	file, err := os.Create("output.txt")
 
 	if err != nil {
@@ -78,7 +78,7 @@ func monitor1(garden [][]int, rwMutex *sync.RWMutex, wg *sync.WaitGroup) {
 	defer wg.Done()
 }
 
-func monitor2(garden [][]int, rwMutex *sync.RWMutex, wg *sync.WaitGroup) {
+func fileReader(garden [][]int, rwMutex *sync.RWMutex, wg *sync.WaitGroup) {
 	for i := 0; i < operationsLimit; i++ {
 		rwMutex.RLock()
 		for i := 0; i < len(garden); i++ {
@@ -117,8 +117,8 @@ func main() {
 
 	go gardener(garden, &rwMutex, &wg)
 	go nature(garden, &rwMutex, &wg)
-	go monitor1(garden, &rwMutex, &wg)
-	go monitor2(garden, &rwMutex, &wg)
+	go fileWriter(garden, &rwMutex, &wg)
+	go fileReader(garden, &rwMutex, &wg)
 
 	wg.Wait()
 
