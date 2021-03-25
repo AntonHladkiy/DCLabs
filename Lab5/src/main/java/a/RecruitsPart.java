@@ -25,7 +25,7 @@ public class RecruitsPart implements Runnable {
             if (!thisPartFinished) {
                 System.out.println(Arrays.toString(recruits));
                 boolean formatted = true;
-                for (int i = leftIndex; i < rightIndex - 1; i++) {
+                for (int i = leftIndex; i < rightIndex ; i++) {
                     if (recruits[i] != recruits[i + 1]) {
                         recruits[i] *= -1;
                         formatted = false;

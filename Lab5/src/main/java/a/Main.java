@@ -25,9 +25,11 @@ public class Main {
         }
 
         Thread[] threads = new Thread[partsNumber];
-
+        threads[0] = new Thread(new RecruitsPart(recruits, 0, 0, 50, cyclicBarrier));
+        threads[1] = new Thread(new RecruitsPart(recruits, 1, 50, 100, cyclicBarrier));
+        threads[2] = new Thread(new RecruitsPart(recruits, 2, 100, 149, cyclicBarrier));
         for (int i = 0; i < partsNumber; i++) {
-            threads[i] = new Thread(new RecruitsPart(recruits, i, 50 * i, 50 * (i + 1), cyclicBarrier));
+            //threads[i] = new Thread(new RecruitsPart(recruits, i, 50 * i, 50 * (i + 1)-1, cyclicBarrier));
         }
 
         for (int i = 0; i < partsNumber; i++) {
