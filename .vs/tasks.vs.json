@@ -1,0 +1,10 @@
+{
+  "version": "0.2.1",
+  "tasks": [
+    {
+      "taskLabel": "задача-Cannon",
+      "appliesTo": "Lab8/Cannon/Cannon.sln",
+      "type": "launch"
+    }
+  ]
+}
