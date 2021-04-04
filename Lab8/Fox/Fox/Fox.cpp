@@ -1,3 +1,4 @@
+
 #include <mpi.h>
 #include <stdio.h>
 #include <stdlib.h>
@@ -5,6 +6,7 @@
 #include <string.h>
 #include <chrono>
 #include <iostream>
+
 // prototypes
 void print_matrix(double*, int);
 void fill_matrix(double*, int, int);
